@@ -27,32 +27,51 @@ List<Map<String, dynamic>> cat = [
 
 List<Map<String, dynamic>> doctors1 = [
   {
-    'image': 'doctor2.jpg',
-    'name': 'DrAhmed',
+    'image': '1.png',
+    'name': 'Dr-Ahmed',
     'job': 'Surgon',
     'rate': 4.5,
-    'time': '10.00Am-3.00Pm'
+    'time': '10.00Am-3.00Pm',
+    'is_selected': true,
+    'location':'Cairo,Egypt',
+    'patient': "12K"
+
   },
   {
-    'image': 'doctor2.jpg',
-    'name': 'DrAhmed',
+    'image': '1.png',
+    'name': 'Dr-Ahmed',
     'job': 'Surgon',
     'rate': 3.5,
-    'time': '10.00Am-3.00Pm'
+    'time': '10.00Am-3.00Pm',
+    'is_selected': false,
+    'location':'Cairo,Egypt',
+    'patient': "12K"
+
+
+
   },
   {
-    'image': 'doctor2.jpg',
-    'name': 'DrAhmed',
+    'image': '1.png',
+    'name': 'Dr-Ahmed',
     'job': 'Surgon',
     'rate': 3.5,
-    'time': '10.00Am-3.00Pm'
+    'time': '10.00Am-3.00Pm',
+    'is_selected': false,
+    'location':'Cairo,Egypt',
+    'patient': "11K"
+
+
+
   },
   {
-    'image': 'doctor2.jpg',
-    'name': 'DrAhmed',
+    'image': '1.png',
+    'name': 'Dr-Ahmed',
     'job': 'Surgon',
     'rate': 4.5,
-    'time': '10.00Am-3.00Pm'
+    'time': '10.00Am-3.00Pm',
+    'is_selected': false,
+    'location':'Cairo,Egypt',
+    'patient': "12K"
   }
 ];
 List<Map<String, dynamic>> doctors2 = [

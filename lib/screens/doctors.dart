@@ -1,3 +1,4 @@
+import 'package:doctor_reservation/screens/profile.dart';
 import 'package:doctor_reservation/widgets/Lists.dart';
 import 'package:doctor_reservation/widgets/custom_app_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,6 @@ class Doctors extends StatefulWidget {
 }
 
 class _DoctorsState extends State<Doctors> {
- int index_page=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +100,6 @@ class _DoctorsState extends State<Doctors> {
                       }
                       setState(() {
                         cat[index]['is_selected'] = true;
-                        index_page=index;
                       });
                     },
                     child: Container(
@@ -155,74 +154,135 @@ class _DoctorsState extends State<Doctors> {
           SizedBox(
             height: 250,
             child: ListView.builder(
-              itemCount:
-                itemBuilder: (context,x) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                height: 100,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 7.5),
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.grey.shade100),
-                ),
-                child: Row(
+                itemCount: doctors1.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      for (int i = 0; i < doctors1.length; i++) {
+                        if (doctors1[i]['is_selected'] == true) {
+                          setState(() {
+                            doctors1[i]['is_selected'] = false;
+                          });
+                        }
+                      }
+                      setState(() {
+                        doctors1[index]['is_selected'] = true;
+                      });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Profile(
+                                    image: doctors1[index]['image'],
+                                    name:  doctors1[index]['name'],
+                                    job: doctors1[index]['job'],
+                                    location: doctors1[index]['location'],
+                                    rate: doctors1[index]['rate'],
+                                    patient: doctors1[index]['patient'],
 
-                  children: [
-                    CircleAvatar(
-                      radius: 25,
-                      //backgroundColor: Colors.indigo,
-                      backgroundImage: AssetImage('assets/${cat[index_page][x]['pageindax']['image']}'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+
+                                  )));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 100,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 7.5),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.grey.shade100),
+                          color: doctors1[index]['is_selected']
+                              ? Color(0xFF2d80e6)
+                              : Colors.white),
+                      child: Row(
                         children: [
-                          SizedBox(
-                            height: 25,
+                          CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.white,
+                            backgroundImage: AssetImage(
+                                'assets/${doctors1[index]['image']}'),
                           ),
-                          Text('data'),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('data'),
-                          SizedBox(
-                            height: 7.5,
-                          ),
-                          Row(
-                            children: [
-
-                              ImageIcon(
-                                AssetImage('assets/star.png'),
-                                size: 15,
-                                color: Color(0xFFefbb3f),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text('data'),
-                              SizedBox(
-                                width: 65,
-                              ),
-                              ImageIcon(
-                                AssetImage('assets/clock2.png'),
-                                size: 15,
-                                color: Colors.red,
-                              ),
-                              SizedBox(
-                                width: 7.5,
-                              ),
-                              Text('data'),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Text(
+                                  doctors1[index]['name'],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: doctors1[index]['is_selected']
+                                          ? Colors.white
+                                          : Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  doctors1[index]['job'],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: doctors1[index]['is_selected']
+                                          ? Colors.white
+                                          : Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 7.5,
+                                ),
+                                Row(
+                                  children: [
+                                    ImageIcon(
+                                      AssetImage('assets/star.png'),
+                                      size: 15,
+                                      color: Color(0xFFefbb3f),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      (doctors1[index]['rate']).toString(),
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: doctors1[index]['is_selected']
+                                              ? Colors.white
+                                              : Colors.black),
+                                    ),
+                                    SizedBox(
+                                      width: 65,
+                                    ),
+                                    ImageIcon(
+                                      AssetImage('assets/clock2.png'),
+                                      size: 15,
+                                      color: Colors.red,
+                                    ),
+                                    SizedBox(
+                                      width: 7.5,
+                                    ),
+                                    Text(
+                                      doctors1[index]['time'],
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: doctors1[index]['is_selected']
+                                              ? Colors.white
+                                              : Colors.black),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              );
-            }),
+                    ),
+                  );
+                }),
           )
         ],
       ),
